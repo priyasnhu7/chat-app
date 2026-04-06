@@ -1,0 +1,105 @@
+(function(s,a){typeof exports=="object"&&typeof module<"u"?a(exports,require("inversify"),require("reflect-metadata")):typeof define=="function"&&define.amd?define(["exports","inversify","reflect-metadata"],a):(s=typeof globalThis<"u"?globalThis:s||self,a(s.config={},s.inversify))})(this,function(s,a){"use strict";var x=Object.defineProperty;var j=(s,a,S)=>a in s?x(s,a,{enumerable:!0,configurable:!0,writable:!0,value:S}):s[a]=S;var d=(s,a,S)=>j(s,typeof a!="symbol"?a+"":a,S);const S="bodhiServicesReady",f={CONFIG_SERVICE_READY:"CONFIG_SERVICE_READY",I18N_SERVICE_READY:"I18N_SERVICE_READY",AUTHENTICATION_SERVICE_READY:"AUTHENTICATION_SERVICE_READY",AUTHENTICATION_STATE_CHANGED:"AUTHENTICATION_STATE_CHANGED",CLEAR_CACHE:"CLEAR_CACHE",COURSE_DATA_EXPIRED:"COURSE_DATA_EXPIRED",INTERNET_CONNECTION_OFFLINE:"INTERNET_CONNECTION_OFFLINE",IN_APP_NOTIFICATIONS_UPDATED:"IN_APP_NOTIFICATIONS_UPDATED",DISCUSSION_CRUD_EVENT:"DISCUSSION_CRUD_EVENT",ANNOUNCEMENT_ACCESS_TIME_UPDATED:"ANNOUNCEMENT_ACCESS_TIME_UPDATED",DISCUSSION_FETCHED:"DISCUSSION_FETCHED",CLEAR_SELECTION:"CLEAR_SELECTION",PAYMENT_CARD_CLICK:"PAYMENT_CARD_CLICK",GENERAL_ANNOUNCEMENT_ACCESS_TIME_UPDATED:"GENERAL_ANNOUNCEMENT_ACCESS_TIME_UPDATED"};var g;(e=>{e.NOT_DOWNLOADED=0,e.IN_QUEUE=1,e.IN_PROGRESS=2,e.DOWNLOADED=3,e.FAILED=4,e.UNKNOWN=5})(g||(g={}));const T=e=>{var i,n;return(i=window.__Bodhi)!=null&&i.isServicesReady&&((n=window.__Bodhi)!=null&&n.container)?{container:window.__Bodhi.container,isServicesReady:window.__Bodhi.isServicesReady}:(window.addEventListener(S,e),{container:null,isServicesReady:!1})},D=(e,i)=>{window.removeEventListener(S,i)};var O=Object.getOwnPropertyDescriptor,w=(e,i,n,t)=>{for(var c=t>1?void 0:t?O(i,n):i,l=e.length-1,r;l>=0;l--)(r=e[l])&&(c=r(c)||c);return c};let p=class{constructor(){d(this,"listenerId",null);d(this,"ServiceContainer",{container:new a.Container,isServicesReady:!1});d(this,"container",{container:new a.Container,isServicesReady:!1});d(this,"callbackExecuted",!1);d(this,"onServicesLoaded",e=>{var n;const i=e;this.ServiceContainer=i.detail,(n=this.onServiceLoadedCallback)==null||n.call(this,this.ServiceContainer),D(this.listenerId,this.onServicesLoaded)})}listenToServicesReady(){var t;const{container:e,isServicesReady:i,listenerId:n}=T(this.onServicesLoaded);n&&(this.listenerId=n),i&&(this.ServiceContainer={container:e,isServicesReady:i},(t=this.onServiceLoadedCallback)==null||t.call(this,this.ServiceContainer))}getServiceContainer(){return this.ServiceContainer}};p=w([a.injectable()],p);const _={AUTH_SERVICE:"AuthService",API_SERVICE:"ApiService",CONFIG_SERVICE:"ConfigService",ENTITLEMENT_SERVICE:"EntitlementService",I18N_SERVICE:"I18nService",STORAGE_SERVICE:"StorageService",EVENT_BUS_SERVICE:"EventBusService",ANALYTICS_SERVICE:"AnalyticsService",SOCKET_SERVICE:"SocketService",ONBOARDING_SERVICE:"OnBoardingService",LOGGER_SERVICE:"LoggerService",ROUTER_SERVICE:"RouterService",NOTIFICATION_SERVICE:"NotificationService"},y={CONFIG_SERVICE:"BodhiSIDConfigService"},u="bodhiUniqueDeviceId",L=e=>{let i=e;if(i)try{i=new URL(i).pathname}catch{i=e}if(!i&&typeof window<"u"&&(i=window.location.pathname),i){const n=i.split("/").filter(t=>t.length>0);return(n.length>0?n[0]:"learn")||"learn"}return"learn"},b="https://apig.learnyst.com",U=19030;`${L()}`;const m={INTERNAL_ERROR:610};let C;const V=new Uint8Array(16);function P(){if(!C&&(C=typeof crypto<"u"&&crypto.getRandomValues&&crypto.getRandomValues.bind(crypto),!C))throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");return C(V)}const o=[];for(let e=0;e<256;++e)o.push((e+256).toString(16).slice(1));function B(e,i=0){return o[e[i+0]]+o[e[i+1]]+o[e[i+2]]+o[e[i+3]]+"-"+o[e[i+4]]+o[e[i+5]]+"-"+o[e[i+6]]+o[e[i+7]]+"-"+o[e[i+8]]+o[e[i+9]]+"-"+o[e[i+10]]+o[e[i+11]]+o[e[i+12]]+o[e[i+13]]+o[e[i+14]]+o[e[i+15]]}const v={randomUUID:typeof crypto<"u"&&crypto.randomUUID&&crypto.randomUUID.bind(crypto)};function k(e,i,n){if(v.randomUUID&&!e)return v.randomUUID();e=e||{};const t=e.random||(e.rng||P)();return t[6]=t[6]&15|64,t[8]=t[8]&63|128,B(t)}const M=(e,i,n=!1)=>{if(window.__Bodhi&&window.__Bodhi.container){if(window.__Bodhi.container.bind(e).to(i).inSingletonScope(),n){const t=window.__Bodhi.container.get(e);typeof t.init=="function"&&t.init()}}else console.error("Bodhi container is not available!")},F=()=>typeof window<"u"&&window&&(window.localStorage.getItem("isWinApp")==="true"||window.isWinApp)||!1,G=()=>typeof window<"u"&&window&&(window.localStorage.getItem("isMacApp")==="true"||window.isMacApp)||!1;var Y=Object.getOwnPropertyDescriptor,H=(e,i,n,t)=>{for(var c=t>1?void 0:t?Y(i,n):i,l=e.length-1,r;l>=0;l--)(r=e[l])&&(c=r(c)||c);return c};s.ConfigService=class extends p{constructor(){super(...arguments);d(this,"schoolId",null);d(this,"name","ConfigService");d(this,"data",null);d(this,"isLoading",!1);d(this,"error",null);d(this,"isConfigServiceReady",!1);d(this,"storageService",null);d(this,"schoolConfig",null)}init(){this.listenToServicesReady()}async fetchData(){var r,E,R,A,N;this.isLoading=!0;const n=this.getServiceContainer().container.get(_.API_SERVICE),t=window.location.hostname==="localhost",c=`
+      query SchoolProvisioning($schoolId: ID) {
+        schoolProvisioning(schoolId: $schoolId) {
+          disableDarkModeToggle
+          settings{
+            signupTrackingScript
+            generateLearnerInvoices
+          }
+          customDomain
+          externalLinks
+          id
+          isNewsfeedEnabled
+          isNewsfeedMigrated
+          isResourceSchool
+          isSearchEnabled
+          logoFileName
+          lystDomain
+          faviconUrl
+          mobileAppStatus
+          mobileApps
+          name
+          pages
+          privacyPolicy
+          refundPolicy
+          socialLinks {
+            fbLink
+            linkedinLink
+            telegramLink
+            whatsappLink
+            youtubeLink
+            twitterLink
+            instagramLink
+          }
+          termsCondition
+          whiteLabled
+          tax
+          schoolAttribute {
+            isAffiliateMarketingEnabled
+            isCommunityEnabled
+            isFastCheckoutEnabled
+            isMandatorySignin
+            isSignupRestricted
+            googleSyncCredentials{
+              apiKey
+              clientId
+            }
+            privateDiscussionEnabled
+          }
+          schoolFeature {
+            learnerSegment
+            pricingModel
+            isUserLikesEnabled
+          }
+          schoolConfig {
+            isLearnyfyAndroidEnabled
+            isLearnyfyIosEnabled
+            isReferralEnabled
+            isWalletEnabled
+            segmentEnabled
+            newsfeedEnabled
+            isCategoryEnabled
+            productTypesOrder
+            isLikeEnabled
+            isCourseGuardV1
+            isCourseGuardEnabled
+            windowsAppLink
+            macAppLink
+            enableSandboxPayment
+            isRzpQrEnabled
+            isOneOnOneEnabled
+          }
+          isSupportEnabled
+          affiliateMarketing
+          androidLink
+          iosLink
+          authenticationTypes
+          webUrl
+          hasPublishedCta
+          signupSettings {
+            types {
+              email
+              github
+              githubMobile
+              gplus
+              apple
+            }
+            appleData {
+              clientId
+              redirectUrl
+            }
+            fbData {
+              appId
+              appSecret
+            }
+            githubData {
+              clientId
+              clientSecret
+            }
+            gplusData {
+              appId
+              appSecret
+            }
+          }
+        }
+      }`;let l=this.schoolId?{schoolId:this.schoolId}:{};!this.schoolId&&t&&(l.schoolId=`${(window==null?void 0:window.LYST_LOCAL_SCHOOL_ID)||U}`);try{let I=(r=this.storageService)==null?void 0:r.getValue("LYSTschoolProvisioningConfig",1,.25);I||(I=await n.query(c,l,"cache-first"),(E=this.storageService)==null||E.setValue("LYSTschoolProvisioningConfig",I,1)),this.data={...I.schoolProvisioning};let h=(R=this.storageService)==null?void 0:R.getValue("LYSTuserProperties",1,.25);h||(h=await this.fetchUserProperties(),(A=this.storageService)==null||A.setValue("LYSTuserProperties",h,1)),this.data&&(this.data={...this.data,...h}),this.schoolId=`${(N=this.data)==null?void 0:N.id}`,this.isConfigServiceReady=!0,this.getServiceContainer().container.get(_.EVENT_BUS_SERVICE).publish(f.CONFIG_SERVICE_READY)}catch(I){console.error("Error fetching config:",I),this.error={message:"We are unable to fetch the config data, Reload the page",code:m.INTERNAL_ERROR}}finally{this.isLoading=!1}}getLocationProperties(){var n;return((n=this.data)==null?void 0:n.location_properties)||null}async fetchUserProperties(){var n;try{const t=this.schoolId??((n=this.data)==null?void 0:n.id),c=new URLSearchParams({school_id:String(t),device_type:"4"});return await(await fetch(`${b}/learner/v1/user_properties/fetch_properties?${c.toString()}`)).json()}catch{return}}async refetch(){await this.fetchData()}getData(){return this.data}onServiceLoadedCallback(){var n;this.schoolId=((n=document.getElementById(y.CONFIG_SERVICE))==null?void 0:n.getAttribute("data-school-id"))||null,this.storageService=this.getServiceContainer().container.get(_.STORAGE_SERVICE),this.fetchData()}async getDeviceId(){var n,t,c,l;if(F()||G())try{const r=((n=this.storageService)==null?void 0:n.getValue(u))||"";if(r)return r;const E=await window.chrome.webview.hostObjects.sample.getDeviceId();if(E)return(t=this.storageService)==null||t.setValue(u,E),E}catch(r){return console.error("Exception in calling native code device Id ",r),console.error("Exception in calling native code devuce Id"+JSON.stringify(r)),"unavailable"}else{const r=((c=this.storageService)==null?void 0:c.getValue(u))||"";if(r)return r;const E=k();return E?((l=this.storageService)==null||l.setValue(u,E),E):"unavailable"}return"unavailable"}},s.ConfigService=H([a.injectable()],s.ConfigService),function(){M(_.CONFIG_SERVICE,s.ConfigService,!0)}(),Object.defineProperty(s,Symbol.toStringTag,{value:"Module"})});

@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,297014,t=>{"use strict";var o=t.i(999059),e=t.i(659258);async function c(){let{batchData:t}=(0,e.useBatchData)();return(0,o.jsx)("bodhi-batch-about",{"product-id":t.id,"product-seo":t.seoTitle})}t.s(["default",()=>c])}]);
